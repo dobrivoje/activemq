@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://activemq.apache.org/schema/core
+        http://activemq.apache.org/schema/core/activemq-core-5.2.0.xsd">
+    
+    <amq:queue id="mojKju" physicalName="test.queues.dobri" />
+    <amq:connectionFactory id="connectionFactory" brokerURL="tcp://localhost:61616"/>
+    
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate"
+          c:_-ref="connectionFactory" 
+          p:defaultDestinationName="mojKju" />
+    
+    <bean id="producerBean2" class="spring.beans.ProducerBeans2"
+          c:_-ref="jmsOperations" />
+    
+    <bean id="jmsOperations" class="org.springframework.jms.core.JmsOperations" />
+    
+    
+</beans>
